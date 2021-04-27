@@ -1,28 +1,32 @@
 <!-- main.php -->
-<div class="item_display">
-	<?php foreach ($database as $item) { ?>
+
+<!-- solo per database.php incluso in indec.php -->
+
+<!-- <div class="item_display">
+	<?php //foreach ($database as $item) { ?>
 			<div class="item_box">
 				<div class="card">
-					<img src="<?php echo $item['poster'] ?>" alt="">
+					<img src="<?php //echo $item['poster'] ?>" alt="">
 					<div class="item_title fx-grow-1 txt_1">
-						<?php echo $item['title'] ?>
+						<?php //echo $item['title'] ?>
 					</div>
 					<div class="item_info">
 						<div class="item_author txt_2">
-							<?php echo $item['author'] ?>
+							<?php //echo $item['author'] ?>
 						</div>
 						<div class="item_year txt_2">
-							<?php echo $item['year'] ?>
+							<?php //echo $item['year'] ?>
 						</div>
 					</div>
 				</div>
 			</div>
-	<?php } ?>
-</div>
+	<?php //} ?>
+</div> -->
 
 
-<!-- ** ITEM DISPLAY PANEL ** -->
-<!-- <div class="item_display" v-if="displayItemsAreReady">
+<!-- solo per database.php chiamato da vue tramite axios -->
+
+<div class="item_display" v-if="displayItemsAreReady">
 	<div v-for="item in displayItems" v-if="isViewable(item)">
 		<div class="item_box">
 			<div class="card">
@@ -44,4 +48,4 @@
 			</div>
 		</div>
 	</div>
-</div> -->
+</div>

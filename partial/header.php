@@ -2,7 +2,7 @@
 <div class="header">
 	<img src="img/Spotify_logo.png" alt="">
 	<div class="select_box">
-		<!-- <label for="filter1">Filter by</label>
+		<label for="filter1">Filter by</label>
 		<select id="filter1" v-model="filter1Selected" @change="filter2Selected=''">
 			<option value="">none</option>
 			<option v-for="filter1 in Object.keys(filterLists)" :value="filter1">{{cap(filter1)}}
@@ -18,6 +18,6 @@
 			<option value="">none</option>
 			<option v-for="sort in Object.keys(filterLists)" :value="sort">{{cap(sort)}}
 			</option>
-		</select> -->
+		</select>
 	</div>
 </div>

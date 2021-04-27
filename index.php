@@ -45,14 +45,14 @@
 			<div id="app">
 
 				<!-- ** DATABASE ** -->
-				<!-- escludi qua e chiama da vue -->
+				<!-- escluso qua e chiamato da vue/axios -->
 				<?php // require __DIR__.'/partial/database.php'; ?>
 
 				<!-- ** HEADER ** -->
 				<?php require __DIR__.'/partial/header.php'; ?>
 
 				<!-- ** ITEM DISPLAY PANEL ** -->
-				<?php // require __DIR__.'/partial/main.php'; ?>
+				<?php require __DIR__.'/partial/main.php'; ?>
 
 			</div> <!-- Vue.js main instance #app -->
 
