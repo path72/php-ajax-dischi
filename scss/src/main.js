@@ -17,11 +17,13 @@ var app = new Vue(
 		methods: {
 			getRemoteData() {
 				axios
-					.get('partial/database.php')
+					.get('partial/database_axios.php') // mi trovo in index.php!
 					.then((resp)=>{
-						this.itemList = resp.data; // original data
-						console.log('this.itemList',this.itemList);
-						this.buildFilterList(this.itemList); // object of data's parameters
+						if (Array.isArray(resp.data)) {
+							this.itemList = resp.data; // original data
+							console.log('this.itemList',this.itemList);
+							this.buildFilterList(this.itemList); // object of data's parameters
+						}
 					});
 			},
 			buildFilterList(items) {

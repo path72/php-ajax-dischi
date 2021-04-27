@@ -44,15 +44,32 @@
 
 			<div id="app">
 
-				<!-- ** DATABASE ** -->
-				<!-- escluso qua e chiamato da vue/axios -->
-				<?php // require __DIR__.'/partial/database.php'; ?>
+				<!-- ** INCLUDED/AXIOS DATABASE ** -->
+				<?php 
+					if ($_GET == null) {
+						$axios_db_mode = true;
+					} else {
+						$axios_db_mode = false;
+						require __DIR__.'/partial/database.php';
+					}
+				?>
 
 				<!-- ** HEADER ** -->
 				<?php require __DIR__.'/partial/header.php'; ?>
 
 				<!-- ** ITEM DISPLAY PANEL ** -->
 				<?php require __DIR__.'/partial/main.php'; ?>
+
+				<div class="msg">
+					<?php
+						echo 'Axios DB mode: ';
+						if ($axios_db_mode) {
+							echo 'ON (<em>JSONed</em> database.php called by axios)';
+						} else {
+							echo 'OFF (original database.php included in index.php)';
+						} 
+					?>
+				</div>
 
 			</div> <!-- Vue.js main instance #app -->
 

@@ -31,13 +31,16 @@ var app = new Vue({
     getRemoteData: function getRemoteData() {
       var _this = this;
 
-      axios.get('partial/database.php').then(function (resp) {
-        _this.itemList = resp.data; // original data
+      axios.get('partial/database_axios.php') // mi trovo in index.php!
+      .then(function (resp) {
+        if (Array.isArray(resp.data)) {
+          _this.itemList = resp.data; // original data
 
-        console.log('this.itemList', _this.itemList);
+          console.log('this.itemList', _this.itemList);
 
-        _this.buildFilterList(_this.itemList); // object of data's parameters
+          _this.buildFilterList(_this.itemList); // object of data's parameters
 
+        }
       });
     },
     buildFilterList: function buildFilterList(items) {
