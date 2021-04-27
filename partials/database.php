@@ -29,7 +29,7 @@
             'title' => 'Brave new World',
             'author' => 'Iron Maiden',
             'year' => 2000,
-            'poster' => 'https://i.ebayimg.com/images/g/1GwAAOSwFytaKr7l/s-l300.jpg'
+            'poster' => 'https://img.ibs.it/images/0190295567620_0_0_0_75.jpg'
         ],
         [
             'title' => 'One more car, one more rider',
