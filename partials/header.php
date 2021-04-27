@@ -1,5 +1,5 @@
 <!-- header.php -->
-<div class="header flex-row-cv fx-row-between">
+<div class="header">
 	<img src="img/Spotify_logo.png" alt="">
 	<div class="select_box">
 		<!-- <label for="filter1">Filter by</label>

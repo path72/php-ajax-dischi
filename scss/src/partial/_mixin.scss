@@ -20,4 +20,4 @@
 @mixin fx-col-between	{	align-items: space-between;		}
 @mixin fx-grow-1 { flex-grow: 1; }
 @mixin fx-grow-2 { flex-grow: 2; }
-
+@mixin fx-wrap   { flex-wrap: wrap; }

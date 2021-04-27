@@ -169,30 +169,28 @@ a:hover {
  * section
  */
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 50px;
   padding: 5px 15px;
   background-color: #2e3b47;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   margin-bottom: 30px;
 }
-
 .header img {
   height: 100%;
 }
-
-.header .select_box select,
-.header .select_box button {
+.header .select_box select, .header .select_box button {
   padding: 5px 10px;
   border-radius: 5px;
   outline: none;
   background-color: #1d2c3a;
   color: #eaeaea;
 }
-
 .header .select_box select {
   max-width: 150px;
 }
-
 .header .select_box label {
   margin-left: 15px;
 }
@@ -201,7 +199,17 @@ a:hover {
  * MAIN
  * section
  */
-.card {
+.item_display {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.item_display .item_box {
+  /* vue.js classes */
+}
+.item_display .item_box .card {
+  display: flex;
+  flex-direction: column;
   position: relative;
   height: 240px;
   padding: 15px;
@@ -210,40 +218,28 @@ a:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   margin: 10px;
 }
-
-.item_display .item_box img {
+.item_display .item_box .card img {
   width: 100px;
 }
-
-.item_display .item_box .item_title {
+.item_display .item_box .card .item_title {
   margin: 15px 0;
   width: 100px;
   text-align: center;
 }
-
-.item_display .item_box .item_info {
+.item_display .item_box .card .item_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100px;
 }
-
-.item_display .item_box .item_author,
-.item_display .item_box .item_year {
+.item_display .item_box .card .item_author, .item_display .item_box .card .item_year {
   color: #858585;
 }
-
-.item_display .item_box .item_info .item_genre {
-  position: absolute;
-  bottom: 3px;
-  right: 3px;
-}
-
-/* vue.js classes */
 .item_display .item_box .selected {
   color: #00c864;
 }
-
 .item_display .item_box .sorted {
   text-decoration: underline;
-  /* color: $purple; */
 }
 
 /**********************************
