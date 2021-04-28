@@ -40,35 +40,3 @@ a {
 	font-size: 0.8em;
 	font-weight: 300;
 }
-
-// % FLEX STRUCTURE % 
-.flex-row    { display: flex;                                               }
-.flex-row-co { display: flex; justify-content: center;                      }
-.flex-row-cv { display: flex;                          align-items: center; }
-.flex-row-cc { display: flex; justify-content: center; align-items: center; }
-.flex-col    { display: flex; flex-direction: column;                                               }
-.flex-col-co { display: flex; flex-direction: column; align-items: center;                          }
-.flex-col-cv { display: flex; flex-direction: column;                      justify-content: center; }
-.flex-col-cc { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.fx-row-left    { justify-content: flex-start;    }
-.fx-row-right   { justify-content: flex-end;      }
-.fx-row-between { justify-content: space-between; }
-.fx-col-left  { align-items: flex-start;     }
-.fx-col-right { align-items: flex-end;       }
-.fx-grow-0 { flex-grow: 0; }
-.fx-grow-1 { flex-grow: 1; }
-.fx-grow-2 { flex-grow: 2; }
-.fx-wrap { flex-wrap: wrap; }
-
-// % VERTICAL PADDINGS % 
-.padding_v_big { padding-top: 100px; padding-bottom: 100px; }
-.padding_v_med { padding-top:  60px; padding-bottom:  60px; }
-.padding_v_sml { padding-top:  30px; padding-bottom:  30px; }
-.padding_v_min { padding-top:  10px; padding-bottom:  10px; }
-.float_l { float: left; }
-.float_r { float: right; }
-.clearfix {
-	content: "";
-	display: table;
-	clear: both;
-}

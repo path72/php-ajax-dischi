@@ -7,43 +7,43 @@ var app = new Vue(
 		el: '#app',
 		data: {
 			itemList				: [], 		// original remote data 
-			displayItems			: [], 		// displayed (sortable) data
+			displayItems			: [], 		// displayed (filtered/sortable) data
 			displayItemsAreReady	: false,
-			sortSelected			: '',		// parameter1 selected for sorting
-			filterLists				: {}, 		// object with parameter1: [ parameter2 value list ]
-			filter1Selected			: '', 		// parameter1 selected for filter
-			filter2Selected			: ''		// parameter2 selected for filter
+			sortSelected			: '',		// level1 parameter selected for sorting
+			filterLists				: {}, 		// object > level1 parameter: [ level2 parameter value list ]
+			filter1Selected			: '', 		// level1 parameter selected for filter
+			filter2Selected			: ''		// level2 parameter selected for filter
 		},
 		methods: {
 			getRemoteData() {
 				axios
-					.get('partial/database_axios.php') // mi trovo in index.php!
+					.get('http://localhost/git/php-ajax-dischi/partial/server.php')
 					.then((resp)=>{
 						if (Array.isArray(resp.data)) {
-							this.itemList = resp.data; // original data
-							console.log('this.itemList',this.itemList);
-							this.buildFilterList(this.itemList); // object of data's parameters
+							this.itemList = resp.data; // original remote data
+							console.log('itemList',this.itemList);
+							this.buildFilterList(this.itemList); // object collecting data's parameters
 						}
 					});
 			},
 			buildFilterList(items) {
 				items.forEach((item)=>{ // item cycle
-					for (key in item) { // parameter1 cycle of item
+					for (key in item) { // level1 parameter cycle for each item
 						if (this.filterLists[key] == undefined)
-							this.filterLists[key] = []; // parameter2 values list
+							this.filterLists[key] = []; // level2 parameter values list is initialized
 						if (!this.filterLists[key].includes(item[key])) 
-							 this.filterLists[key].push(item[key]); // parameter2 values
+							 this.filterLists[key].push(item[key]); // level2 parameter list for each level1 parameter
 					}
 				});
-				console.log('this.filterLists',this.filterLists);
+				console.log('filterLists',this.filterLists);
 				this.displayItems = this.itemList; // filling starting displayed data
 				if (this.displayItems.length > 0) this.displayItemsAreReady = true;
 			},
 			sortFilter() {
 				if (this.sortSelected) {
-					this.filterLists[this.sortSelected].sort(); // sorted parameter2 values
-					// console.log('this.filterLists[this.sortSelected]',this.filterLists[this.sortSelected]);
-					let sortedItems = []; // sorted items by sorted paramter2
+					this.filterLists[this.sortSelected].sort(); // sorting level2 parameters for a level1 parameter
+					console.log('sorting: filterLists['+this.sortSelected+']',this.filterLists[this.sortSelected]);
+					let sortedItems = []; // sorted items by sorted level2 paramter
 					this.filterLists[this.sortSelected].forEach((sortPar)=>{
 						this.itemList.forEach((item)=>{
 							for (key in item) {
@@ -53,7 +53,7 @@ var app = new Vue(
 						});
 					});
 					this.displayItems = sortedItems;
-					// console.log('this.displayItems',this.displayItems);
+					// console.log('displayItems',this.displayItems);
 				} else {
 					this.displayItems = this.itemList;
 				}
@@ -87,88 +87,3 @@ var app = new Vue(
 		}
 	}
 );
-
-// var app = new Vue(
-// 	{
-// 		el: '#app',
-// 		data: {
-// 			itemList: [], 			// original remote data 
-// 			displayItems: [],		// displayed (sortable) data
-// 			displayItemsAreReady: false,
-// 			sortSelected: '',		// parameter1 selected for sorting
-// 			filterLists: {}, 		// object with parameter1: [ parameter2 value list ]
-// 			filter1Selected: '', 	// parameter1 selected for filter
-// 			filter2Selected: ''		// parameter2 selected for filter
-// 		},
-// 		methods: {
-// 			getRemoteData() {
-// 				axios
-// 					.get('https://flynn.boolean.careers/exercises/api/array/music')
-// 					.then((resp)=>{
-// 						this.itemList = resp.data.response;	 // original data
-// 						this.buildFilterList(this.itemList); // object of data's parameters
-// 					});
-// 			},
-// 			buildFilterList(items) {
-// 				items.forEach((item)=>{ // item cycle
-// 					for (key in item) { // parameter1 cycle of item
-// 						if (this.filterLists[key] == undefined)
-// 							this.filterLists[key] = []; // parameter2 values list
-// 						if (!this.filterLists[key].includes(item[key])) 
-// 							 this.filterLists[key].push(item[key]); // parameter2 values
-// 					}
-// 				});
-// 				// console.log(this.filterLists);
-// 				this.displayItems = this.itemList; // filling displayed data
-// 				if (this.displayItems.length > 0) this.displayItemsAreReady = true;
-// 			},
-// 			sortFilter() {
-// 				if (this.sortSelected) {
-// 					this.filterLists[this.sortSelected].sort(); // sorted parameter2 values
-// 					// console.log(this.filterLists[this.sortSelected]);
-// 					let sortedItems = []; // sorted items by sorted paramter2
-// 					this.filterLists[this.sortSelected].forEach((sortPar)=>{
-// 						this.itemList.forEach((item)=>{
-// 							for (key in item) {
-// 								if (item[key] == sortPar && !sortedItems.includes(item))
-// 									sortedItems.push(item);
-// 							}
-// 						});
-// 					});
-// 					this.displayItems = sortedItems;
-// 					// console.log(this.displayItems);
-// 				} else {
-// 					this.displayItems = this.itemList;
-// 				}
-// 			},
-// 			isViewable(item) {
-// 				if (this.filter1Selected && this.filter2Selected)
-// 					return (item[this.filter1Selected] == this.filter2Selected);
-// 				else 
-// 					return true;
-// 			},
-// 			isSelected(par) {
-// 				if (par == this.filter2Selected) return true;
-// 				else return false;
-// 			},
-// 			isSorted(par) {
-// 				if (par == this.sortSelected) return true;
-// 				else return false;
-// 			},
-// 			cap(string) {
-// 				return string[0].toUpperCase()+string.substring(1);
-// 			}
-// 		},
-// 		computed: {
-// 		},
-// 		created() {
-// 			this.getRemoteData(); // prima è meglio
-// 		},
-// 		mounted() {
-// 		},
-// 		updated() {
-// 		}
-// 	}
-// );
-// Vue.config.devtools = true;
-

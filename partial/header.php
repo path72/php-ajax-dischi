@@ -1,10 +1,11 @@
 <!-- header.php -->
-<div class="header">
+<header>
+
 	<img src="img/Spotify_logo.png" alt="">
-	<div class="select_box">
 
-		<?php if ($axios_db_mode) { ?>
+	<?php if ($axios_db_mode) { ?>
 
+		<div class="select_box">
 			<label for="filter1">Filter by</label>
 			<select id="filter1" v-model="filter1Selected" @change="filter2Selected=''">
 				<option value="">none</option>
@@ -22,8 +23,8 @@
 				<option v-for="sort in Object.keys(filterLists)" :value="sort">{{cap(sort)}}
 				</option>
 			</select>
+		</div>
 
-		<?php } ?>
+	<?php } ?>
 
-	</div>
-</div>
+</header>

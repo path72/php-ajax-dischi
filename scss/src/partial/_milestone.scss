@@ -1,0 +1,15 @@
+/**********************************
+ * MILESTONE
+ * section
+ */
+ .milestone {
+	@include flex-row-cv;
+	@include fx-row-between;
+	padding: 25px 10px 15px;
+	.msg {
+		text-align: center;
+		.led {
+			color: $green;
+		}
+	}
+}

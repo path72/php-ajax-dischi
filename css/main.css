@@ -50,125 +50,11 @@ a:hover {
   font-weight: 300;
 }
 
-.flex-row {
-  display: flex;
-}
-
-.flex-row-co {
-  display: flex;
-  justify-content: center;
-}
-
-.flex-row-cv {
-  display: flex;
-  align-items: center;
-}
-
-.flex-row-cc {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-col-co {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.flex-col-cv {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.flex-col-cc {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.fx-row-left {
-  justify-content: flex-start;
-}
-
-.fx-row-right {
-  justify-content: flex-end;
-}
-
-.fx-row-between {
-  justify-content: space-between;
-}
-
-.fx-col-left {
-  align-items: flex-start;
-}
-
-.fx-col-right {
-  align-items: flex-end;
-}
-
-.fx-grow-0 {
-  flex-grow: 0;
-}
-
-.fx-grow-1 {
-  flex-grow: 1;
-}
-
-.fx-grow-2 {
-  flex-grow: 2;
-}
-
-.fx-wrap {
-  flex-wrap: wrap;
-}
-
-.padding_v_big {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
-.padding_v_med {
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
-.padding_v_sml {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.padding_v_min {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.float_l {
-  float: left;
-}
-
-.float_r {
-  float: right;
-}
-
-.clearfix {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 /**********************************
  * HEADER
  * section
  */
-.header {
+header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -176,38 +62,51 @@ a:hover {
   padding: 5px 15px;
   background-color: #2e3b47;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  margin-bottom: 30px;
 }
-.header img {
+header img {
   height: 100%;
 }
-.header .select_box select, .header .select_box button {
+header .select_box select, header .select_box button {
   padding: 5px 10px;
   border-radius: 5px;
   outline: none;
   background-color: #1d2c3a;
   color: #eaeaea;
 }
-.header .select_box select {
+header .select_box select {
   max-width: 150px;
 }
-.header .select_box label {
+header .select_box label {
   margin-left: 15px;
+}
+
+/**********************************
+ * MILESTONE
+ * section
+ */
+.milestone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 10px 15px;
+}
+.milestone .msg {
+  text-align: center;
+}
+.milestone .msg .led {
+  color: #00c864;
 }
 
 /**********************************
  * MAIN
  * section
  */
-.item_display {
+main .item_display {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
-.item_display .item_box {
-  /* vue.js classes */
-}
-.item_display .item_box .card {
+main .item_display .item_box .card {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -217,37 +116,29 @@ a:hover {
   border-radius: 3px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   margin: 10px;
+  /* vue.js classes */
 }
-.item_display .item_box .card img {
+main .item_display .item_box .card img {
   width: 100px;
 }
-.item_display .item_box .card .item_title {
+main .item_display .item_box .card .item_title {
+  flex-grow: 1;
   margin: 15px 0;
   width: 100px;
   text-align: center;
 }
-.item_display .item_box .card .item_info {
+main .item_display .item_box .card .item_info {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100px;
 }
-.item_display .item_box .card .item_author, .item_display .item_box .card .item_year {
+main .item_display .item_box .card .item_author, main .item_display .item_box .card .item_year {
   color: #858585;
 }
-.item_display .item_box .selected {
+main .item_display .item_box .card .selected {
   color: #00c864;
 }
-.item_display .item_box .sorted {
+main .item_display .item_box .card .sorted {
   text-decoration: underline;
 }
-
-.msg {
-  margin-top: 30px;
-  text-align: center;
-}
-
-/**********************************
- * FOOTER
- * section
- */
