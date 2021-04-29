@@ -36,6 +36,12 @@
             'author' => 'Eric Clapton',
             'year' => 2002,
             'poster' => 'https://images-na.ssl-images-amazon.com/images/I/81MDAIdh78L._SY355_.jpg'
+		],
+        [
+            'title' => 'TOGLIMI!',
+            'author' => 'Queen',
+            'year' => 2049,
+            'poster' => 'https://images-na.ssl-images-amazon.com/images/I/71g40mlbinL._SX355_.jpg'
         ]
     ];
 

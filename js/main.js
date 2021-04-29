@@ -22,47 +22,42 @@ var app = new Vue({
     // level1 parameter selected for sorting
     filterLists: {},
     // object > level1 parameter: [ level2 parameter value list ]
+    filterLists2: {},
+    // object > level1 parameter: [ level2 parameter value list ]
     filter1Selected: '',
     // level1 parameter selected for filter
     filter2Selected: '' // level2 parameter selected for filter
 
   },
   methods: {
-    getRemoteData: function getRemoteData() {
-      var _this = this;
-
-      var wl = window.location;
-      axios.get(wl.protocol + '//' + wl.host + '/git/php-ajax-dischi/partial/server.php') // .get('http://localhost/git/php-ajax-dischi/partial/server.php')
-      .then(function (resp) {
-        if (Array.isArray(resp.data)) {
-          _this.itemList = resp.data; // original remote data
-
-          console.log('itemList', _this.itemList);
-
-          _this.buildFilterList(_this.itemList); // object collecting data's parameters
-
-        }
-      });
-    },
-    buildFilterList: function buildFilterList(items) {
-      var _this2 = this;
-
-      items.forEach(function (item) {
-        // item cycle
-        for (key in item) {
-          // level1 parameter cycle for each item
-          if (_this2.filterLists[key] == undefined) _this2.filterLists[key] = []; // level2 parameter values list is initialized
-
-          if (!_this2.filterLists[key].includes(item[key])) _this2.filterLists[key].push(item[key]); // level2 parameter list for each level1 parameter
-        }
-      });
-      console.log('filterLists', this.filterLists);
-      this.displayItems = this.itemList; // filling starting displayed data
-
-      if (this.displayItems.length > 0) this.displayItemsAreReady = true;
-    },
+    // getRemoteData() {
+    // 	let wl = window.location;
+    // 	axios
+    // 		.get(wl.protocol+'//'+wl.host+'/git/php-ajax-dischi/partial/server.php')
+    // 		// .get('http://localhost/git/php-ajax-dischi/partial/server.php')
+    // 		.then((resp)=>{
+    // 			if (Array.isArray(resp.data)) {
+    // 				this.itemList = resp.data; // original remote data
+    // 				// console.log('itemList',this.itemList);
+    // 				this.buildFilterList(this.itemList); // object collecting data's parameters
+    // 			}
+    // 		});
+    // },
+    // buildFilterList(items) {
+    // 	items.forEach((item)=>{ // item cycle
+    // 		for (key in item) { // level1 parameter cycle for each item
+    // 			if (this.filterLists[key] == undefined)
+    // 				this.filterLists[key] = []; // level2 parameter values list is initialized
+    // 			if (!this.filterLists[key].includes(item[key])) 
+    // 				 this.filterLists[key].push(item[key]); // level2 parameter list for each level1 parameter
+    // 		}
+    // 	});
+    // 	// console.log('filterLists',this.filterLists);
+    // 	this.displayItems = this.itemList; // filling starting displayed data
+    // 	if (this.displayItems.length > 0) this.displayItemsAreReady = true;
+    // },
     sortFilter: function sortFilter() {
-      var _this3 = this;
+      var _this = this;
 
       if (this.sortSelected) {
         this.filterLists[this.sortSelected].sort(); // sorting level2 parameters for a level1 parameter
@@ -71,13 +66,14 @@ var app = new Vue({
         var sortedItems = []; // sorted items by sorted level2 paramter
 
         this.filterLists[this.sortSelected].forEach(function (sortPar) {
-          _this3.itemList.forEach(function (item) {
+          _this.itemList.forEach(function (item) {
             for (key in item) {
               if (item[key] == sortPar && !sortedItems.includes(item)) sortedItems.push(item);
             }
           });
         });
-        this.displayItems = sortedItems; // console.log('displayItems',this.displayItems);
+        this.displayItems = sortedItems;
+        console.log('displayItems', this.displayItems);
       } else {
         this.displayItems = this.itemList;
       }
@@ -93,11 +89,46 @@ var app = new Vue({
     },
     cap: function cap(string) {
       return string[0].toUpperCase() + string.substring(1);
+    },
+    filter1Selection: function filter1Selection(filter1Sel) {
+      this.filter2Selected = '';
+      this.getData(filter1Sel);
+    },
+    filter2Selection: function filter2Selection(filter2Sel) {
+      if (this.filter1Selected) {
+        this.getData(this.filter1Selected + '=' + filter2Sel);
+      }
+    },
+    getData: function getData(query) {
+      var _this2 = this;
+
+      var wl = window.location;
+      axios.get(wl.protocol + '//' + wl.host + '/git/php-ajax-dischi/partial/server.php?' + query).then(function (resp) {
+        console.log('getData > query=' + query, resp.data);
+
+        if (query == 'filterlists') {
+          _this2.filterLists = resp.data;
+          console.log('this.filterLists', _this2.filterLists);
+        } else if (query == '') {
+          _this2.itemList = resp.data; // original remote data
+
+          _this2.displayItems = _this2.itemList; // starting displayed data
+
+          if (_this2.displayItems.length > 0) _this2.displayItemsAreReady = true; // GO
+        } else if (query.includes('=')) {
+          _this2.displayItems = resp.data; // update displayed data
+        } else {// non fare nulla
+            // alert('qua!');
+          }
+      });
     }
   },
   computed: {},
   created: function created() {
-    this.getRemoteData(); // prima è meglio
+    // this.getRemoteData(); // ! ALLA FINE ABBANDONARE !
+    this.getData('filterlists'); // l'organizzatore cognitivo
+
+    this.getData(''); // tutto il DB
   },
   mounted: function mounted() {},
   updated: function updated() {}
