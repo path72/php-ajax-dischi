@@ -7,8 +7,7 @@
 
 		<div class="select_box">
 			<label for="filter1">Filter by</label>
-			<!-- <select id="filter1" v-model="filter1Selected" @change="filter2Selected=''"> -->
-			<select id="filter1" v-model="filter1Selected" @change="filter1Selection(filter1Selected)">
+			<select id="filter1" v-model="filter1Selected" @change="filter2Selected=''">
 				<option value="">none</option>
 				<option v-for="filter1 in Object.keys(filterLists)" :value="filter1">{{cap(filter1)}}
 				</option>
