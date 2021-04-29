@@ -16,7 +16,7 @@
 		<title>php-ajax-dischi</title>
 	</head>
 	<body>
-
+	
 		<div id="app">
 
 			<!-- ** SWITCH MILESTONE ** -->

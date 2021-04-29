@@ -31,7 +31,9 @@ var app = new Vue({
     getRemoteData: function getRemoteData() {
       var _this = this;
 
-      axios.get('http://localhost/git/php-ajax-dischi/partial/server.php').then(function (resp) {
+      var wl = window.location;
+      axios.get(wl.protocol + '//' + wl.host + '/git/php-ajax-dischi/partial/server.php') // .get('http://localhost/git/php-ajax-dischi/partial/server.php')
+      .then(function (resp) {
         if (Array.isArray(resp.data)) {
           _this.itemList = resp.data; // original remote data
 
