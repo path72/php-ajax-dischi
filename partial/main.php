@@ -5,7 +5,7 @@
 
 		<!-- solo per database.php chiamato da vue tramite axios -->
 		<div class="item_display" v-if="displayItemsAreReady">
-			<div v-for="item in displayItems" v-if="isViewable(item)">
+			<div v-for="item in displayItems">
 				<div class="item_box">
 					<div class="card">
 						<img :src="item.poster" :alt="item.author + ' - ' + item.title">

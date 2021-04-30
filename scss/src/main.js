@@ -58,17 +58,11 @@ var app = new Vue(
 				}
 				console.log('displayItems UPDATE\n',this.displayItems);
 			},
-			isViewable(item) {
-				if (this.filter1Selected && this.filter2Selected)
-					return (item[this.filter1Selected] == this.filter2Selected);
-				else 
-					return true;
-			},
-			isSelected(par) {
+			isSelected(par) { // classi css gestite da Vue
 				if (par == this.filter2Selected) return true;
 				else return false;
 			},
-			isSorted(par) {
+			isSorted(par) { // classi css gestite da Vue
 				if (par == this.sortSelected) return true;
 				else return false;
 			},
